@@ -2,7 +2,7 @@ package vendingmachine;
 
 import vendingmachine.controller.CatalogController;
 import vendingmachine.controller.ChangeController;
-import vendingmachine.controller.PurchaseController;
+import vendingmachine.controller.MainMenuController;
 import vendingmachine.controller.UserAccountController;
 import vendingmachine.controller.VendingMachineAccountController;
 
@@ -16,7 +16,7 @@ public class Application {
 	}
 
 	private static void startMainLogic() {
-		PurchaseController.purchaseCatalogs();
+		MainMenuController.mainMenuStart();
 	}
 
 	private static void endApplication() {
@@ -27,6 +27,6 @@ public class Application {
 	private static void initApplication() {
 		VendingMachineAccountController.setVendingMachineAccount();
 		CatalogController.setCatalogListInput();
-		UserAccountController.setUserAccountByInput();
+		UserAccountController.addUserAccountByInput();
 	}
 }

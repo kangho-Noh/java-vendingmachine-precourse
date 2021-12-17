@@ -22,13 +22,11 @@ public class CatalogRepository {
 		return null;
 	}
 
-	public static boolean isExistCheaperThan(int account) {
-		for (Catalog catalog : catalogList) {
-			if (catalog.isCheaperThan(account)
-				&& catalog.isExist()) {
-				return true;
-			}
-		}
-		return false;
+	public static boolean contains(Catalog catalog) {
+		return catalogList.contains(catalog);
+	}
+
+	public static List<Catalog> getCatalogList() {
+		return catalogList;
 	}
 }

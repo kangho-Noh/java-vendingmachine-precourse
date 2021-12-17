@@ -4,11 +4,7 @@ import vendingmachine.domain.Catalog;
 import vendingmachine.domain.Coin;
 
 public class UserAccount {
-	private static int account;
-
-	public static void setUserAccount(int account) {
-		UserAccount.account = account;
-	}
+	private static int account = 0;
 
 	public static int getAccount() {
 		return account;
@@ -16,10 +12,6 @@ public class UserAccount {
 
 	public static void purchase(int price) {
 		account -= price;
-	}
-
-	public static boolean canBuyAnyCatalog() {
-		return CatalogRepository.isExistCheaperThan(account);
 	}
 
 	public static boolean canBuy(Catalog catalog) {
@@ -32,6 +24,10 @@ public class UserAccount {
 
 	public static void subtract(int money) {
 		account -= money;
+	}
+
+	public static void addUserAccount(int input) {
+		account += input;
 	}
 
 	@Override

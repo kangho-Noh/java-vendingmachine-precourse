@@ -9,6 +9,7 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 import vendingmachine.domain.Catalog;
 import vendingmachine.repository.CatalogRepository;
+import vendingmachine.view.CatalogInputView;
 import vendingmachine.view.exception.ErrorMessage;
 
 public class CatalogService {
@@ -17,6 +18,7 @@ public class CatalogService {
 	private static final List<Catalog> INVALID_INPUT = null;
 
 	public static void setCatalogListByInput() {
+		CatalogInputView.printInputGuide();
 		List<Catalog> catalogList;
 		do {
 			String input = Console.readLine();
@@ -45,7 +47,7 @@ public class CatalogService {
 		List<Catalog> catalogList = new ArrayList<>();
 		for (String catalogString : catalogStringList) {
 			Catalog catalog = makeCatalog(catalogString);
-			checkCatalogAlreadyExist(catalogList, catalog);
+			checkCatalogAlreadyExist(catalog);
 			catalogList.add(catalog);
 		}
 		return catalogList;

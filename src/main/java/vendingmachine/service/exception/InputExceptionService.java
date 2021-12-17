@@ -1,8 +1,12 @@
 package vendingmachine.service.exception;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import vendingmachine.domain.Catalog;
+import vendingmachine.domain.Menu;
+import vendingmachine.repository.CatalogRepository;
 import vendingmachine.repository.UserAccount;
 
 public class InputExceptionService {
@@ -22,6 +26,7 @@ public class InputExceptionService {
 	private static final String NOT_ENOUGH_MONEY = "상품을 살 돈이 부족합니다.";
 	private static final String NOT_ENOUGH_CATALOG = "상품의 개수가 부족합니다.";
 	private static final String END_WITH_SEMICOLON_ERROR_MESSAGE = "입력의 마지막에는 세미콜론이 들어가지 않도록 해주세요.";
+	private static final List<String> MENU_ARRAY = Arrays.asList("1", "2", "3", "q");
 
 	public static void checkZeroOrPositiveInt(int input) {
 		if (input < 0) {
@@ -61,8 +66,8 @@ public class InputExceptionService {
 		}
 	}
 
-	public static void checkCatalogAlreadyExist(List<Catalog> catalogList, Catalog catalog) {
-		if (catalogList.contains(catalog)) {
+	public static void checkCatalogAlreadyExist(Catalog catalog) {
+		if (CatalogRepository.contains(catalog)) {
 			throw new IllegalArgumentException(CATALOG_DUPLICATE_ERROR_MESSAGE);
 		}
 	}
@@ -91,6 +96,14 @@ public class InputExceptionService {
 	public static void checkEndWithSemiColon(String inputString) {
 		if (inputString.endsWith(SEMI_COLON)) {
 			throw new IllegalArgumentException(END_WITH_SEMICOLON_ERROR_MESSAGE);
+		}
+	}
+
+	public static void checkRangeInMenu(String ret) {
+		List<Menu> menus = Arrays.asList(Menu.values());
+		List<String> menuValidInputs = menus.stream().map(Menu::toString).collect(Collectors.toList());
+		if (!menuValidInputs.contains(ret)) {
+			throw new IllegalArgumentException("유효하지 않은 명령입니다.");
 		}
 	}
 }

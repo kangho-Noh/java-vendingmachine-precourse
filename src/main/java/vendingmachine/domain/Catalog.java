@@ -5,8 +5,8 @@ import java.util.Objects;
 import vendingmachine.repository.UserAccount;
 
 public class Catalog {
-	private String name;
-	private int price;
+	private final String name;
+	private final int price;
 	private int amount;
 
 	public Catalog(String name, int price, int amount) {
@@ -25,6 +25,11 @@ public class Catalog {
 		}
 		Catalog catalog = (Catalog)obj;
 		return Objects.equals(name, catalog.name);
+	}
+
+	@Override
+	public String toString() {
+		return String.format("이름: %s 가격: %d원 잔여량: %d개", name, price, amount);
 	}
 
 	public void purchase() {

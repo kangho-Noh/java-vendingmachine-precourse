@@ -35,6 +35,6 @@ public class VendingMachineAccount {
 	}
 
 	public void setAccount(int account) {
-		this.account = account;
+		VendingMachineAccount.account = account;
 	}
 }
